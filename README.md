@@ -1,5 +1,5 @@
 this is number 2
-how will i make sence or complete reorganization?
+how will i make sense or complete reorganization?
 # hello-world - 
 ## new header 2
 starter 
