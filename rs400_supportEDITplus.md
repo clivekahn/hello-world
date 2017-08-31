@@ -4,7 +4,7 @@
 
 With the release of Intel® RealSense™ Camera RS400, Intel Perceptual Computing Group is introducing a number of changes to the RealSense™ Cross-Platform API (**librealsense**) support.
 
-Software support for Intel® RealSense™ will be split into two coexisting release lineups: **librealsense 1.x** and **librealsense 2+**.</br/>
+Software support for Intel® RealSense™ will be split into two coexisting release lineups: **librealsense 1.x** & **librealsense 2+**.
 
  * **librealsense 1.x** will continue to provide support for RealSense™ devices: F200, R200 and ZR300.
 
