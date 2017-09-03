@@ -2,7 +2,7 @@
 
 Samples are intended to showcase useful capabilities of the library and the hardware while providing well documented reference code. 
 
-For mode advanced usages you might also want to review the list of [Tools](../tools) we provide. 
+For mode advanced usages you might want to also review the list of [Tools](../tools) we provide. 
 
 For a detailed explanations and API documentation see our [Documentation](../doc) section 
  
