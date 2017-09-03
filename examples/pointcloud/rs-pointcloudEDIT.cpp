@@ -6,14 +6,14 @@
 
 #include <algorithm>            // std::min, std::max
 
-// Struct for managing rotation of pointcloud view
+// Define struct state to manage rotation of the pointcloud view
 struct state { 
     state() : yaw(0.0), pitch(0.0), last_x(0.0), last_y(0.0),
         ml(false), offset_x(0.0f), offset_y(0.0f), tex() {}
     double yaw, pitch, last_x, last_y; bool ml; float offset_x, offset_y; texture tex; 
 };
 
-// Helper functions
+// Create Helper functions
 void register_glfw_callbacks(window& app, state& app_state);
 void draw_pointcloud(window& app, state& app_state, rs2::points& points);
 
@@ -21,18 +21,22 @@ int main(int argc, char * argv[]) try
 {
     // Create a simple OpenGL window for rendering:
     window app(1280, 720, "RealSense Pointcloud Example");
+    
     // Construct an object to manage view state
     state app_state;
-    // register callbacks to allow manipulation of the pointcloud
+    
+    // Register callbacks to allow manipulation of the pointcloud
     register_glfw_callbacks(app, app_state);
 
-    // Declare pointcloud object, for calculating pointclouds and texture mappings
+    // Declare the pointcloud object, for calculating pointclouds and texture mappings
     rs2::pointcloud pc = rs2::context().create_pointcloud();
+    
     // We want the points object to be persistent so we can display the last cloud when a frame drops
     rs2::points points;
 
     // Declare RealSense pipeline, encapsulating the actual device and sensors
     rs2::pipeline pipe;
+    
     // Start streaming with default recommended configuration
     pipe.start();
 
@@ -42,7 +46,7 @@ int main(int argc, char * argv[]) try
         auto frames = pipe.wait_for_frames();
         if (rs2::frame color = frames.get_color_frame())
         {
-            // Tell pointcloud object to map to this color frame
+            // Tell the pointcloud object to map to this color frame
             pc.map_to(color);
 
             // Upload the color frame to OpenGL
@@ -69,7 +73,7 @@ catch (const std::exception & e)
     std::cerr << e.what() << std::endl;
 }
 
-// Registers the state variable and callbacks with glfw to allow mouse control of the pointcloud
+// Register the state variable and callbacks with glfw to allow mouse control of the pointcloud
 void register_glfw_callbacks(window& app, state& app_state)
 {
     glfwSetWindowUserPointer(app, &app_state);
@@ -120,7 +124,7 @@ void register_glfw_callbacks(window& app, state& app_state)
 // Handles all the OpenGL calls needed to display the point cloud
 void draw_pointcloud(window& app, state& app_state, rs2::points& points)
 {
-    // OpenGL commands that prep screen for the pointcloud
+    // OpenGL commands that prep the screen for the pointcloud
     glPopMatrix();
     glPushAttrib(GL_ALL_ATTRIB_BITS);
 
@@ -152,14 +156,14 @@ void draw_pointcloud(window& app, state& app_state, rs2::points& points)
     glBegin(GL_POINTS);
 
 
-    /* this segment actually prints the pointcloud */
+   // this segment actually prints the pointcloud 
     auto vertices = points.get_vertices();              // get vertices
     auto tex_coords = points.get_texture_coordinates(); // and texture coordinates
     for (int i = 0; i < points.size(); i++)
     {
         if (vertices[i].z)
         {
-            // upload the point and texture coordinates only for points we have depth data for
+            // upload the point and texture coordinates only for the points that we have depth data for
             glVertex3fv(vertices[i]);
             glTexCoord2fv(tex_coords[i]);
         }
