@@ -34,7 +34,7 @@ texture depth_image, color_image;
 Depth data is provided as 12-bit grayscale values, which is not very useful for visualization.  
 To overcome this, we offer an API to convert this grayscale image to RGB:
 ```cpp
-// Declare depth colorizer for pretty visualization of depth data
+// Declare depth colorizer for enhanced color visualization of depth data
 rs2::colorizer color_map; 
 ```
 
@@ -57,7 +57,7 @@ rs2::frame depth = color_map(data.get_depth_frame()); // Find and colorize the d
 rs2::frame color = data.get_color_frame();            // Find the color data
 ```
 
-Finally, the `texture` class from [example.hpp](../example.hpp) takes care of the rendering
+Finally, depth and color rendering is implemented by the `texture` class from [example.hpp](../example.hpp)
 ```cpp
 // Render depth on to the first half of the screen and color on to the second
 depth_image.render(depth, { 0,               0, app.width() / 2, app.height() });
