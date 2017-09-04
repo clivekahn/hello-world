@@ -2,16 +2,16 @@
 
 ## Overview
 
-This sample demonstrates how to configure the camera for streaming and rendering Depth & RGB data to the screen.  
+This sample demonstrates how to configure the camera for streaming and rendering Depth & RGB color data to the screen.  
 We use OpenGL for cross-platform rendering and GLFW for window management.  
 If you are using OpenCV, `imshow` is a good alternative. 
 
-## Expected Output
+## Expected Depth and Color Output:
 ![expected output](expected_output.png)
 
 ## Code Overview 
 
-First, we including the Intel® RealSense™ Cross-Platform API.  
+First, we include the Intel® RealSense™ Cross-Platform API.  
 All but advanced functionality is provided through a single header:
 ```cpp
 #include <librealsense2/rs.hpp> // Include RealSense Cross Platform API
@@ -19,7 +19,7 @@ All but advanced functionality is provided through a single header:
 
 Next, we include a [very short helper library](../example.hpp) to encapsulate OpenGL rendering and window management:
 ```cpp
-#include "example.hpp"          // Include short list of convenience functions for rendering
+#include "example.hpp"          // Include a short list of convenience functions for rendering
 ```
 
 This header lets us easily open a new window and prepare textures for rendering.  
@@ -27,12 +27,12 @@ The `texture` class is designed to hold video frame data for rendering.
 ```cpp
 // Create a simple OpenGL window for rendering:
 window app(1280, 720, "RealSense Capture Example");
-// Declare two textures on the GPU, one for color and one for depth
+// Declare two textures on the GPU, one for depth and one for color
 texture depth_image, color_image;
 ```
 
-Image depth data is usually provided in a 12-bit grayscale which is not very useful for visualization.  
-To enhance visualiztion, we developed an API that converts the grayscale image to RGB:
+Image depth data is usually provided on a 12-bit grayscale which is not very useful for visualization.  
+To enhance visualiztion, we provide an API that converts the grayscale image to RGB:
 ```cpp
 // Declare depth colorizer for enhanced color visualization of depth data
 rs2::colorizer color_map; 
