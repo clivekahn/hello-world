@@ -32,7 +32,7 @@ texture depth_image, color_image;
 ```
 
 Image depth data is usually provided on a 12-bit grayscale which is not very useful for visualization.  
-To enhance visualiztion, we provide an API that converts the grayscale image to RGB:
+To enhance visualization, we provide an API that converts the grayscale image to RGB:
 ```cpp
 // Declare depth colorizer for enhanced color visualization of depth data
 rs2::colorizer color_map; 
