@@ -2,7 +2,7 @@
 
 ## Overview
 
-This sample demonstrates how to configure the camera for streaming and render depth and RGB data to the screen.  
+This sample demonstrates how to configure the camera for streaming and rendering depth & RGB data to the screen.  
 We will use OpenGL for cross-platform rendering and GLFW for window management.  
 If you are using OpenCV, `imshow` is a good alternative. 
 
