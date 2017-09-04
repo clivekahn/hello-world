@@ -2,8 +2,8 @@
 
 ## Overview
 
-This sample demonstrates how to configure the camera for streaming and rendering depth & RGB data to the screen.  
-We will use OpenGL for cross-platform rendering and GLFW for window management.  
+This sample demonstrates how to configure the camera for streaming and rendering Depth & RGB data to the screen.  
+We use OpenGL for cross-platform rendering and GLFW for window management.  
 If you are using OpenCV, `imshow` is a good alternative. 
 
 ## Expected Output
@@ -11,13 +11,13 @@ If you are using OpenCV, `imshow` is a good alternative.
 
 ## Code Overview 
 
-We start by including the Intel® RealSense™ Cross-Platform API.  
+First, we including the Intel® RealSense™ Cross-Platform API.  
 All but advanced functionality is provided through a single header:
 ```cpp
 #include <librealsense2/rs.hpp> // Include RealSense Cross Platform API
 ```
 
-Next, we include a [very short helper library](../example.hpp) for encapsulation of OpenGL rendering and window management:
+Next, we include a [very short helper library](../example.hpp) to encapsulate OpenGL rendering and window management:
 ```cpp
 #include "example.hpp"          // Include short list of convenience functions for rendering
 ```
@@ -31,8 +31,8 @@ window app(1280, 720, "RealSense Capture Example");
 texture depth_image, color_image;
 ```
 
-Depth data is provided as 12-bit grayscale values, which is not very useful for visualization.  
-To overcome this, we offer an API to convert this grayscale image to RGB:
+Image depth data is usually provided in a 12-bit grayscale which is not very useful for visualization.  
+To enhance visualiztion, we developed an API that converts the grayscale image to RGB:
 ```cpp
 // Declare depth colorizer for enhanced color visualization of depth data
 rs2::colorizer color_map; 
