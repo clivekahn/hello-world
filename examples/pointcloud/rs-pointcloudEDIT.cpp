@@ -19,7 +19,7 @@ void draw_pointcloud(window& app, state& app_state, rs2::points& points);
 
 int main(int argc, char * argv[]) try
 {
-    // Create a simple OpenGL window for rendering:
+    // Create a simple OpenGL window for rendering
     window app(1280, 720, "RealSense Pointcloud Example");
     
     // Construct an object to manage view state
@@ -159,7 +159,7 @@ void draw_pointcloud(window& app, state& app_state, rs2::points& points)
 
    // Print the pointcloud 
     auto vertices = points.get_vertices();              // get vertices
-    auto tex_coords = points.get_texture_coordinates(); // and texture coordinates
+    auto tex_coords = points.get_texture_coordinates(); // get texture coordinates
     for (int i = 0; i < points.size(); i++)
     {
         if (vertices[i].z)
