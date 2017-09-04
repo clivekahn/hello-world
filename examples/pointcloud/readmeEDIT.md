@@ -11,19 +11,21 @@ Using your mouse, you should be able to interact with the pointcloud, rotating, 
 
 ## Code Overview
 
-Similar to the [first tutorial](../capture/) we include the Cross-Platform API:
+First we include the Cross-Platform API (as we did in the [first tutorial](../capture/)):
 ```cpp
 #include <librealsense2/rs.hpp> // Include RealSense Cross Platform API
 ```
 
-Next, we prepared a [very short helper library](../example.hpp) encapsulating basic OpenGL rendering and window management:
+Next, we prepare a [very short helper library](../example.hpp) encapsulating basic OpenGL rendering and window management:
 ```cpp
 #include "example.hpp"          // Include short list of convenience functions for rendering
 ```
 
 We also include the STL `<algorthm>` header for `std::min` and `std::max`.
 
-Next, we define a `state` struct and two helper functions. `state` and `register_glfw_callbacks` handle the pointcloud's rotation in the application, and `draw_pointcloud` makes all the OpenGL calls necessary to display the pointcloud.
+Next, we define a `state` struct and two helper functions:  
+`state` and `register_glfw_callbacks` handle the pointcloud's rotation in the application  
+`draw_pointcloud` makes all the OpenGL calls necessary to display the pointcloud.
 ```cpp
 // Struct for managing rotation of pointcloud view
 struct state { double yaw, pitch, last_x, last_y; bool ml; float offset_x, offset_y; texture tex; };
@@ -58,9 +60,9 @@ rs2::points points;
 
 The `Pipeline` class is the entry point to the SDK's functionality:
 ```cpp
-// Declare RealSense pipeline, encapsulating the actual device and sensors
+// Declare the RealSense pipeline, encapsulating the actual device and sensors
 pipeline pipe;
-// Start streaming with default recommended configuration
+// Start streaming with the default recommended configuration
 pipe.start();
 ```
 
@@ -69,7 +71,9 @@ Next, we wait in a loop unit for the next set of frames:
 auto data = pipe.wait_for_frames(); // Wait for next set of frames from the camera
 ```
 
-Using helper functions on the `frameset` object we check for new depth and color frames. If we get a color frame, we pass it to the `pointcloud` object to use as the texture, and also give it to OpenGL with the help of the `texture` class. If we get a depth frame, we generate a new pointcloud.
+Using helper functions on the `frameset` object we check for new depth and color frames. 
+- If we get a color frame, we pass it to the `pointcloud` object to use as the texture, and also give it to OpenGL with the help of the `texture` class. 
+- If we get a depth frame, we generate a new pointcloud.
 ```cpp
 // Wait for the next set of frames from the camera
 auto frames = pipe.wait_for_frames();
