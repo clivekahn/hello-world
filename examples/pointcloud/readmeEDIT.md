@@ -18,14 +18,14 @@ First we include the Cross-Platform API (as we did in the [first tutorial](../ca
 
 Next, we prepare a [very short helper library](../example.hpp) encapsulating basic OpenGL rendering and window management:
 ```cpp
-#include "example.hpp"          // Include short list of convenience functions for rendering
+#include "example.hpp"          // Include a short list of convenience functions for rendering
 ```
 
 We also include the STL `<algorthm>` header for `std::min` and `std::max`.
 
 Next, we define a `state` struct and two helper functions:  
-`state` and `register_glfw_callbacks` handle the pointcloud's rotation in the application  
-`draw_pointcloud` makes all the OpenGL calls necessary to display the pointcloud.
+- `state` and `register_glfw_callbacks` handle the pointcloud's rotation in the application  
+- `draw_pointcloud` makes all the OpenGL calls necessary to display the pointcloud.
 ```cpp
 // Struct for managing rotation of pointcloud view
 struct state { double yaw, pitch, last_x, last_y; bool ml; float offset_x, offset_y; texture tex; };
@@ -35,7 +35,8 @@ void register_glfw_callbacks(window& app, state& app_state);
 void draw_pointcloud(window& app, state& app_state, rs2::points& points);
 ```
 
-The `example.hpp` header lets us easily open a new window and prepare textures for rendering. The `state` class (declared above) is used for interacting with the mouse, with the help of some callbacks registered through glfw.
+- The `example.hpp` header lets us easily open a new window and prepare textures for rendering. 
+- The `state` class (declared above) is used for interacting with the mouse, with the help of some callbacks registered through glfw.
 ```cpp
 // Create a simple OpenGL window for rendering:
 window app(1280, 720, "RealSense Pointcloud Example");
@@ -45,12 +46,12 @@ state app_state = { 0, 0, 0, 0, false, 0, 0, 0 };
 register_glfw_callbacks(app, app_state);
 ```
 
-We are going to use classes within the `rs2` namespace:
+We use classes within the `rs2` namespace as follows:
 ```cpp
 using namespace rs2;
 ```
 
-As part of the API we offer the `pointcloud` class which calculates a pointcloud and corresponding texture mapping from depth and color frames. To make sure we always have something to display, we also make a `rs2::points` object to store the results of the pointcloud calculation.
+We provide the `pointcloud` class, as part of the API, which calculates a pointcloud and corresponding texture mapping from depth and color frames. To make sure we always have something to display, we create a `rs2::points` object to store the results of the pointcloud calculation.
 ```cpp
 // Declare pointcloud object, for calculating pointclouds and texture mappings
 pointcloud pc = rs2::context().create_pointcloud();
@@ -72,8 +73,8 @@ auto data = pipe.wait_for_frames(); // Wait for next set of frames from the came
 ```
 
 Using helper functions on the `frameset` object we check for new depth and color frames. 
-- If we get a color frame, we pass it to the `pointcloud` object to use as the texture, and also give it to OpenGL with the help of the `texture` class. 
-- If we get a depth frame, we generate a new pointcloud.
+- If we get a color frame, we pass it to the `pointcloud` object to use as the texture, and also give it to OpenGL with the help of the `texture` class 
+- If we get a depth frame, we generate a new pointcloud
 ```cpp
 // Wait for the next set of frames from the camera
 auto frames = pipe.wait_for_frames();
