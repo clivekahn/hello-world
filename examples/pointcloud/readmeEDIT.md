@@ -5,8 +5,8 @@
 This sample demonstrates how to generate and visualize a textured 3D pointcloud.
 
 ## Expected Output
-The application should open a window with a pointcloud.  
-Using your mouse, you should be able to interact with the pointcloud, rotating, zooming, and panning.
+The application opens a window with a pointcloud.  
+Using your mouse, you are able to interact with the pointcloud, rotating, zooming, and panning.
 ![expected output](expected_output.png)
 
 ## Code Overview
