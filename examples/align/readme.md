@@ -15,6 +15,6 @@ The example displays a GUI used to control the max distance to show from the ori
 The application opens a window and displays a video stream from the camera. 
 
 The window has the following elements:
-- A vertical slider is on the left side of the window to control the depth clipping distance
+- A vertical slider on the left side of the window controls the depth clipping distance
 - A color image with a grayed out background
 - A corresponding (colorized) depth image
