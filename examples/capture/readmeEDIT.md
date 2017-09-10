@@ -6,7 +6,8 @@ This sample demonstrates how to configure the camera for streaming and rendering
 We use OpenGL for cross-platform rendering and GLFW for window management.  
 If you are using OpenCV, `imshow` is a good alternative. 
 
-## Expected Depth and Color Output:
+## Expected Output:
+Left window: Depth output - Right window: Color output:
 ![expected output](expected_output.png)
 
 ## Code Overview 
@@ -31,7 +32,7 @@ window app(1280, 720, "RealSense Capture Example");
 texture depth_image, color_image;
 ```
 
-Image depth data is usually provided on a 12-bit grayscale which is not very useful for visualization.  
+Depth data is usually provided on a 12-bit grayscale which is not very useful for visualization.  
 To enhance visualization, we provide an API that converts the grayscale image to RGB:
 ```cpp
 // Declare depth colorizer for enhanced color visualization of depth data
@@ -46,7 +47,7 @@ rs2::pipeline pipe;
 pipe.start(); 
 ```
 
-Next, we wait for the next set of frames, effectively blocking the program:
+Next, we wait for the next set of frames, effectively blocking any further program activity:
 ```cpp
 rs2::frameset data = pipe.wait_for_frames(); // Wait for next set of frames from the camera
 ```
