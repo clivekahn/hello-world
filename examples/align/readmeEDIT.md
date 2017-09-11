@@ -2,19 +2,20 @@
 
 ## Overview
 
-This sample demonstrates usage of the `rs2::align` object that allows users to align 2 projected streams.
+This sample demonstrates usage of the `rs2::align` object that allows users to align the projection of 2 streams.
 
-In this example, we align depth frames to their corresponding color frames and then use the two frames to determine the depth of each color pixel.
+In this example we align depth frames to their corresponding color frames.
+Then we use the two frames to determine the depth of each color pixel.
 
-Using this information we 'remove' the background (beyond a user defined distance) of the color frame that is further away from the camera.
+We use the depth information to 'remove' the background, beyond a user defined distance, of the color frame furthest from the camera.
 
-The example displays a GUI used to control the max distance to show from the original color image.
+The example presents a GUI to regulate the maximum background distance (of the original color image) that will be displayed.
 
 ## Expected Output
 
 The application opens a window and displays a video stream from the camera. 
 
 The window has the following elements:
-- A vertical slider on the left side of the window controls the depth clipping distance
+- A vertical slider on the left side of the window regulates the depth clipping distance
 - A color image with a grayed out background
 - A corresponding (colorized) depth image
