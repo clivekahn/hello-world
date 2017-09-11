@@ -7,7 +7,7 @@ We use OpenGL for cross-platform rendering and GLFW for window management.
 If you are using OpenCV, `imshow` is a good alternative. 
 
 ## Expected Output:
-Left window: Depth output - Right window: Color output:
+See left window for Depth output, right window for Color rendering:
 ![expected output](expected_output.png)
 
 ## Code Overview 
@@ -47,7 +47,7 @@ rs2::pipeline pipe;
 pipe.start(); 
 ```
 
-Next, we wait for the next set of frames, effectively blocking any further program activity:
+Next, we wait for the next set of frames, effectively blocking the program:
 ```cpp
 rs2::frameset data = pipe.wait_for_frames(); // Wait for next set of frames from the camera
 ```
