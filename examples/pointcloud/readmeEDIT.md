@@ -6,7 +6,7 @@ This sample demonstrates how to generate and visualize a textured 3D pointcloud.
 
 ## Expected Output
 The application opens a window with a pointcloud.  
-Using your mouse, you are able to interact with the pointcloud, rotating, zooming, and panning.
+Using your mouse you can interact with the pointcloud, rotating, zooming and panning.
 ![expected output](expected_output.png)
 
 ## Code Overview
@@ -36,7 +36,7 @@ void draw_pointcloud(window& app, state& app_state, rs2::points& points);
 ```
 
 - The `example.hpp` header lets us easily open a new window and prepare textures for rendering. 
-- The `state` class (declared above) is used for interacting with the mouse, with the help of some callbacks registered through glfw.
+- The `state` class (declared above) is used for interacting with the mouse with the help of some callbacks registered through glfw.
 ```cpp
 // Create a simple OpenGL window for rendering:
 window app(1280, 720, "RealSense Pointcloud Example");
@@ -46,12 +46,12 @@ state app_state = { 0, 0, 0, 0, false, 0, 0, 0 };
 register_glfw_callbacks(app, app_state);
 ```
 
-We use classes within the `rs2` namespace as follows:
+We use the classes within the `rs2` namespace:
 ```cpp
 using namespace rs2;
 ```
 
-We provide the `pointcloud` class, as part of the API, which calculates a pointcloud and corresponding texture mapping from depth and color frames. To make sure we always have something to display, we create a `rs2::points` object to store the results of the pointcloud calculation.
+We provide the `pointcloud` class, as part of the API, to calculate a pointcloud and corresponding texture mapping from depth and color frames. To make sure we always have something to display, we create a `rs2::points` object to store the results of the pointcloud calculation.
 ```cpp
 // Declare pointcloud object, for calculating pointclouds and texture mappings
 pointcloud pc = rs2::context().create_pointcloud();
@@ -73,7 +73,7 @@ auto data = pipe.wait_for_frames(); // Wait for next set of frames from the came
 ```
 
 Using helper functions on the `frameset` object we check for new depth and color frames. 
-- If we get a color frame, we pass it to the `pointcloud` object to use as the texture, and also give it to OpenGL with the help of the `texture` class 
+- If we get a color frame, we pass it to the `pointcloud` object to use as the texture and also give it to OpenGL with the help of the `texture` class 
 - If we get a depth frame, we generate a new pointcloud
 ```cpp
 // Wait for the next set of frames from the camera
@@ -98,7 +98,7 @@ Finally we call `draw_pointcloud` to draw the pointcloud.
 draw_pointcloud(app, app_state, points);
 ```
 
-`draw_pointcloud` is primarily calls to OpenGL, but the critical portion iterates over all the points in the pointcloud, and where we have depth data, we upload the point's coordinates and texture mapping coordinates to OpenGL.
+`draw_pointcloud` are primarily calls to OpenGL but the critical portion iterates over all the points in the pointcloud and where we have depth data we upload the point's coordinates and texture mapping coordinates to OpenGL.
 ```cpp
 /* this segment actually prints the pointcloud */
 auto vertices = points.get_vertices();              // get vertices
