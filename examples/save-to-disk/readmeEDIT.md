@@ -5,7 +5,7 @@
 This sample demonstrates how to configure the camera for streaming in a textual environment and save depth and color data to PNG format. It also touches on the subject of capturing [per-frame metadata](../../doc/frame_metadata.md)
 
 ## Expected Output
-The application should run for about a second and exit after saving the PNG and CSV file to disk: 
+The application should run for about a second and exit after saving the PNG and CSV files to disk: 
 ![expected output](expected_output.PNG)
 
 ## Code Overview 
@@ -33,31 +33,31 @@ rs2::pipeline pipe;
 pipe.start();
 ```
 
-It is preferable to capture a frame after auto-exposure stabilizes (so we do not save the first frame that arrives from the device):
+It is preferable to capture a frame after auto-exposure stabilized (so we do not save the first frame that arrives from the device):
 ```cpp
 // Capture 30 frames to give autoexposure a chance to stabilize
 for (auto i = 0; i < 30; ++i) pipe.wait_for_frames();
 ```
 
-Note that Intel® RealSense™ devices are not limited only to video streaming. Some devices offer motion tracking and 6-DOF positioning as well. However, for the purposes of this example we are interested only in video frames: 
+Note that Intel® RealSense™ devices are not limited only to video streaming only - some devices offer motion tracking and 6-DOF positioning as well. However, for the purposes of this example we are interested only in video frames: 
 ```cpp
 // We can only save video frames as PNGs, so we skip the rest
 if (auto vf = frame.as<rs2::video_frame>())
 ```
 
-To better visualize the depth data we apply the colorizer on any incoming depth frame(s):
+To better visualize the depth data we apply the colorizer to any incoming depth frame:
 ```cpp
 // Use the colorizer to get an RGB image for the depth stream
 if (vf.is<rs2::depth_frame>()) vf = color_map(frame);
 ```
 
-Then we save frame data to PNG: 
+Then we save the frame data to PNG: 
 ```cpp
 stbi_write_png(png_file.str().c_str(), vf.get_width(), vf.get_height(),
                vf.get_bytes_per_pixel(), vf.get_data(), vf.get_stride_in_bytes());
 ```
 
-Any frame can include metadata fields. 
+A frame may include metadata field(s). 
 We iterate over all possible metadata fields and save those that are available to CSV:
 ```cpp
 // Record all the available metadata attributes
